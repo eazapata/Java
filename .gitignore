@@ -1,0 +1,14 @@
+.DS_Store
+.*.swp
+tests
+*.class
+h
+/Practica03/nbproject/private/
+/Practica03/build/
+/JavaApplication26/nbproject/private/
+/JavaApplication26/build/
+/Tutorial2/nbproject/private/
+/P03E1/nbproject/private/
+/P03E1/build/
+/P4E1/nbproject/private/
+/P4E1/build/
