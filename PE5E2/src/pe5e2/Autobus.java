@@ -1,6 +1,6 @@
 
 package pe5e2;
-
+import java.util.*;
 
 public class Autobus extends Vehiculo {
     private int plazas;
@@ -19,6 +19,11 @@ public class Autobus extends Vehiculo {
         this.plazas = plazas;
         this.paradas = paradas;
     }
+
+    public Autobus() {
+        super();
+    }
+    
     public int getPlazas() {
         return plazas;
     }
@@ -41,6 +46,14 @@ public class Autobus extends Vehiculo {
         System.out.println("Plazas: "+getPlazas());
         System.out.println("Paradas: "+getParadas());
     }
-    
+    @Override
+    public void pedirAlta(){
+        Scanner lector = new Scanner(System.in);
+        super.pedirAlta();
+        System.out.println("Plazas: ");
+        setPlazas(Integer.parseInt(lector.nextLine()));
+        System.out.println("Paradas: ");
+        setParadas(Integer.parseInt(lector.nextLine()));
+    }
     
 }

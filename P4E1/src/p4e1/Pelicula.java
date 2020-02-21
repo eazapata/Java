@@ -5,7 +5,7 @@ import java.util.*;
 public class Pelicula {
 
     private final int id;
-    private static int num_titulos;
+    private static int num_titulos=1;
     private static int stock_total;
     private String titulo;
     private String director;
@@ -18,7 +18,7 @@ public class Pelicula {
     private static final int max_peliculas = 3000;
 
     public Pelicula(String titulo, String director, int duracion, String genero, String ano, boolean disponibilidad, int stock, int reservadas) {
-        this.id = num_titulos++;
+        this.id = num_titulos++; //Esta linea es para asignar de forma automatica un id
         this.titulo = titulo;
         this.director = director;
         this.duracion = duracion;
@@ -144,16 +144,19 @@ public class Pelicula {
 
     }
 
-    public static void listarPeliculas(ArrayList<Pelicula> peliculas) {
-        for (int i = 0; i < peliculas.size(); i++) {
-            System.out.println("Id: " + peliculas.get(i).getId());
-            System.out.println("Título: " + peliculas.get(i).getTitulo());
-            System.out.println("Director: " + peliculas.get(i).getDirector());
-            System.out.println("Género: " + peliculas.get(i).getGenero());
-            System.out.println("Duración: " + peliculas.get(i).getDuracion());
-            System.out.println("Stock: " + peliculas.get(i).getStock());
-            System.out.println("Reservadas: " + peliculas.get(i).getReservadas());
-            System.out.println("Disponibilidad: " + peliculas.get(i).isDisponibilidad());
+    //METODO PARA MOSTRAR EL CONTENIDO DE LOS ARRAYS PELICULA
+    public static void listarPeliculas(ArrayList<Pelicula> pelis) {
+        for (Pelicula p : pelis) {
+            System.out.println("id " + p.getId());
+            System.out.println("Tiutlo " + p.getTitulo());
+            System.out.println("Director " + p.getDirector());
+            System.out.println("Genero " + p.getGenero());
+            System.out.println("Año " + p.getAno());
+            System.out.println("Duracion " + p.getDuracion());
+            System.out.println("Stock: " + p.getStock());
+            System.out.println("Reservadas: " + p.getReservadas());
+            System.out.println("Disponibilidad: " + p.isDisponibilidad());
+            System.out.println("");
         }
     }
 
@@ -166,14 +169,17 @@ public class Pelicula {
         /*buscaId es el id que busca el usuario*/
         int buscaId = Integer.parseInt(lector.nextLine());
 
+        //Mientras no encuentre la pelicula y el indice sea menor que el tamño del arraylist buscara la pelicula indicada
         while ((i < peliculas.size()) && (!encontrada)) {
             if (buscaId == peliculas.get(i).getId()) {
                 encontrada = true;
+                //Si disponibilidad es false saldrá el aviso
                 if (!peliculas.get(i).isDisponibilidad()) {
                     System.out.println("No quedan copias de esta pelicula");
                 } else {
                     System.out.println("Indica las copias a reservar: ");
                     int copias = Integer.parseInt(lector.nextLine());
+                    //Si la cantidad de copias reservadas es menor al stock permitirá reservar si no mostrará el siguiente mensaje.
                     if (peliculas.get(i).getReservadas() < peliculas.get(i).getStock()) {
                         peliculas.get(i).setReservadas(peliculas.get(i).getReservadas() + copias);
                     } else {
@@ -212,10 +218,9 @@ public class Pelicula {
                 case 1:
                     System.out.println("Introduce el titulo a buscar:");
                     String titulo = lector.nextLine();
-
                     ArrayList<Pelicula> resultadoTitulo = Pelicula.buscarTitulo(peliculas, titulo);
                     if (resultadoTitulo != null) {
-                        mostrarPeliculas(resultadoTitulo);
+                        listarPeliculas(resultadoTitulo);
                     } else {
                         System.out.println("No se encuentra la pelicula");
                     }
@@ -225,7 +230,7 @@ public class Pelicula {
                     String director = lector.nextLine();
                     ArrayList<Pelicula> resultadoDirector = buscarDirector(peliculas, director);
                     if (resultadoDirector != null) {
-                        mostrarPeliculas(resultadoDirector);
+                        listarPeliculas(resultadoDirector);
                     } else {
                         System.out.println("No se encuentra la pelicula");
                     }
@@ -235,7 +240,7 @@ public class Pelicula {
                     String genero = lector.nextLine();
                     ArrayList<Pelicula> resultadoGenero = buscarGenero(peliculas, genero);
                     if (resultadoGenero != null) {
-                        mostrarPeliculas(resultadoGenero);
+                        listarPeliculas(resultadoGenero);
                     } else {
                         System.out.println("No se encuentran peliculas");
                     }
@@ -243,19 +248,19 @@ public class Pelicula {
                 case 4:
                     System.out.println("Indica el año a buscar: ");
                     String ano = lector.nextLine();
-                    ArrayList<Pelicula> resultadoAno = buscarGenero(peliculas, ano);
+                    ArrayList<Pelicula> resultadoAno = buscarAno(peliculas, ano);
                     if (resultadoAno != null) {
-                        mostrarPeliculas(resultadoAno);
+                        listarPeliculas(resultadoAno);
                     } else {
                         System.out.println("No se encuentran peliculas");
                     }
                     break;
                 case 5:
                     System.out.println("Indica la duración a buscar: ");
-                    String duracion = lector.nextLine();
-                    ArrayList<Pelicula> resultadoDuracion = buscarGenero(peliculas, duracion);
+                    int duracion = Integer.parseInt(lector.nextLine());
+                    ArrayList<Pelicula> resultadoDuracion = buscarDuracion(peliculas, duracion);
                     if (resultadoDuracion != null) {
-                        mostrarPeliculas(resultadoDuracion);
+                        listarPeliculas(resultadoDuracion);
                     } else {
                         System.out.println("No se encuentran peliculas");
                     }
@@ -315,7 +320,6 @@ public class Pelicula {
     public static ArrayList buscarDuracion(ArrayList<Pelicula> peliculas, int duracion) {
         ArrayList<Pelicula> busquedaDuracion = new ArrayList();
         for (Pelicula p : peliculas) {
-
             if (p.getDuracion() == duracion) {
                 busquedaDuracion.add(p);
             }
@@ -323,15 +327,4 @@ public class Pelicula {
         return busquedaDuracion;
     }
 
-    public static void mostrarPeliculas(ArrayList<Pelicula> pelis) {
-        for (Pelicula p : pelis) {
-            System.out.println("id " + p.getId());
-            System.out.println("Tiutlo " + p.getTitulo());
-            System.out.println("Director " + p.getDirector());
-            System.out.println("Genero " + p.getGenero());
-            System.out.println("Año " + p.getAno());
-            System.out.println("Duracion " + p.getDuracion());
-            System.out.println("");
-        }
-    }
 }
