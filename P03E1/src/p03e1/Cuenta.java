@@ -81,7 +81,7 @@ public class Cuenta {
 
         return new Cuenta(nombre, numcuenta, pin, interes, saldo);
     }
-
+/*Posicion viene de fuera*/
     public boolean ingreso(ArrayList<Cuenta> cuentas, int posicion) {
         Scanner lector = new Scanner(System.in);
         double ingreso = 0;
