@@ -23,6 +23,14 @@ public class Empleado {
         this.edad = edad;
         this.salario = salario;
     }
+    public Empleado(Empleado e1) {
+        this.nombre = e1.nombre;
+        this.apellido1 = e1.apellido1;
+        this.apellido2 = e1.apellido2;
+        this.nif = e1.nif;
+        this.edad = e1.edad;
+        this.salario = e1.salario;
+    }
 
     public String getNombre() {
         return nombre;

@@ -7,7 +7,7 @@ public class Taxi extends Vehiculo {
     private final int licencia;
     private boolean estado;
     private int num_taxista;
-    private static int numLicencias=100;
+    private static int numLicencias = 100;
 
     public Taxi(int licencia, boolean estado, int num_taxista, int id, String matricula, String modelo, int potencia) {
         super(id, matricula, modelo, potencia);
@@ -28,7 +28,6 @@ public class Taxi extends Vehiculo {
         this.licencia = numLicencias++;
     }
 
-    
     public static int getNumLicencias() {
         return numLicencias;
     }
@@ -72,16 +71,48 @@ public class Taxi extends Vehiculo {
         Scanner lector = new Scanner(System.in);
         super.pedirAlta();
         System.out.println("Disponible (si/no): ");
-        String libre=lector.nextLine().toLowerCase();
-        if(libre.equals("si")){
+        String libre = lector.nextLine().toLowerCase();
+        if (libre.equals("si")) {
             setEstado(true);
-        }else{
+        } else {
             setEstado(false);
         }
         System.out.println("Taxistas trabajando con la misma licencia: ");
         setNum_taxista(Integer.parseInt(lector.nextLine()));
-        
 
+    }
+
+    public static void buscarTaxiLibre(ArrayList<Vehiculo> vehiculos) {
+        int i = 0;
+        boolean encontrado = false;
+        while ((i < vehiculos.size()) && (!encontrado)) {
+            if ((vehiculos.get(i) instanceof Taxi) && (((Taxi) vehiculos.get(i)).isEstado())) {
+                encontrado = true;
+                System.out.println("Id: " + vehiculos.get(i).getId());
+                ((Taxi) vehiculos.get(i)).setEstado(false);
+                System.out.println("Estado:" + ((Taxi) vehiculos.get(i)).isEstado());
+            } else {
+                i++;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("No hay taxis disponibles");
+        }
+    }
+
+    public static void buscarTaxi(ArrayList<Vehiculo> vehiculos,int idTaxi) {
+        int i= 0;
+        boolean encontrado = false;
+        while ((i<vehiculos.size())&&(!encontrado)){
+            if(idTaxi==vehiculos.get(i).getId()){
+                encontrado=true;
+                ((Taxi)vehiculos.get(i)).setEstado(true);
+                System.out.println("El taxi con id "+vehiculos.get(i).getId()+" está libre");
+            }else{
+                i++;
+            }
+        }
+        if(!encontrado)System.out.println("Taxi no encontrado.");
     }
 
 }

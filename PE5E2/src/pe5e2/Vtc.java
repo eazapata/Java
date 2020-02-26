@@ -17,9 +17,9 @@ public class Vtc extends Vehiculo {
 
     public Vtc(Vtc vt1) {
         super((Vehiculo) vt1);
-        this.maxHoras = maxHoras;
-        this.radioAccion = radioAccion;
-        this.ciudad = ciudad;
+        this.maxHoras = vt1.maxHoras;
+        this.radioAccion = vt1.radioAccion;
+        this.ciudad = vt1.ciudad;
     }
 
     public Vtc() {
@@ -64,11 +64,22 @@ public class Vtc extends Vehiculo {
         Scanner lector = new Scanner(System.in);
         super.pedirAlta();
         System.out.println("Máximo de horas: ");
-        setMaxHoras(Integer.parseInt(lector.nextLine()));
+        int horas=Integer.parseInt(lector.nextLine());
+        while(horas>24){
+            System.out.println("Las horas no pueden superar las 24");
+            horas=Integer.parseInt(lector.nextLine());
+        }
+        setMaxHoras(horas);
         System.out.println("Radio acción");
-        setRadioAccion(Double.parseDouble(lector.nextLine()));
+        double radio=Double.parseDouble(lector.nextLine());
+        while(radio>50){
+            System.out.println("El radio no puede superar los 50km");
+            radio=Double.parseDouble(lector.nextLine());
+        }
+        setRadioAccion(radio);
         System.out.println("Ciudad: ");
         setCiudad(lector.nextLine());
     }
+    
 
 }

@@ -18,6 +18,11 @@ public class Repartidor extends Empleado {
         this.horasTrabajadas = horasTrabajadas;
         this.zona = zona;
     }
+    public Repartidor(Repartidor r1){
+        super((Empleado)r1);
+        this.horasTrabajadas = r1.horasTrabajadas;
+        this.zona = r1.zona;
+    }
 
     public int getHorasTrabajadas() {
         return horasTrabajadas;

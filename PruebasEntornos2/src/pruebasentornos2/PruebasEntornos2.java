@@ -14,7 +14,7 @@ public class PruebasEntornos2 {
     static int maximo(int a, int b) {
         int max;
         if (a < b) {
-            max = a;
+            max = b;
         } else {
             max = a;
         }

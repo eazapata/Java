@@ -5,7 +5,7 @@ import java.util.*;
 public class Pelicula {
 
     private final int id;
-    private static int num_titulos=1;
+    private static int num_titulos = 1;
     private static int stock_total;
     private String titulo;
     private String director;
@@ -280,10 +280,11 @@ public class Pelicula {
         for (Pelicula p : peliculas) {
             if (p.getTitulo().contains(titulo)) {
                 busquedaTitulo.add(p);
+                return busquedaTitulo;
             }
         }
+        return null;
 
-        return busquedaTitulo;
     }
 
     public static ArrayList buscarDirector(ArrayList<Pelicula> peliculas, String director) {
@@ -291,10 +292,12 @@ public class Pelicula {
         for (Pelicula p : peliculas) {
             if (p.getDirector().contains(director)) {
                 busquedaDirector.add(p);
+                return busquedaDirector;
+                
             }
         }
 
-        return busquedaDirector;
+        return null;
     }
 
     public static ArrayList buscarGenero(ArrayList<Pelicula> peliculas, String genero) {
@@ -302,9 +305,10 @@ public class Pelicula {
         for (Pelicula p : peliculas) {
             if (p.getGenero().contains(genero)) {
                 busquedaGenero.add(p);
+                return busquedaGenero;
             }
         }
-        return busquedaGenero;
+        return null;
     }
 
     public static ArrayList buscarAno(ArrayList<Pelicula> peliculas, String ano) {
@@ -312,9 +316,10 @@ public class Pelicula {
         for (Pelicula p : peliculas) {
             if (p.getAno().contains(ano)) {
                 busquedaAno.add(p);
+                return busquedaAno;
             }
         }
-        return busquedaAno;
+        return null;
     }
 
     public static ArrayList buscarDuracion(ArrayList<Pelicula> peliculas, int duracion) {
@@ -322,9 +327,10 @@ public class Pelicula {
         for (Pelicula p : peliculas) {
             if (p.getDuracion() == duracion) {
                 busquedaDuracion.add(p);
+                return busquedaDuracion;
             }
         }
-        return busquedaDuracion;
+        return null;
     }
 
 }

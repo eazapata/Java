@@ -4,6 +4,8 @@ import java.util.*;
 
 public class PE5E2 {
 
+    
+
     public static void main(String[] args) {
         ArrayList<Vehiculo> vehiculos = new ArrayList();
         boolean salir = false;
@@ -30,7 +32,7 @@ public class PE5E2 {
 
                     break;
                 case 2:
-                    Vtc vtc1=new Vtc();
+                    Vtc vtc1 = new Vtc();
                     vtc1.pedirAlta();
                     vehiculos.add(vtc1);
                     break;
@@ -76,10 +78,13 @@ public class PE5E2 {
                     break;
 
                 case 6:
-                    System.out.println("");
+                    Taxi.buscarTaxiLibre(vehiculos);
 
                     break;
                 case 7:
+                    System.out.println("Introduce el id a buscar");
+                    int idTaxi=Integer.parseInt(lector.nextLine());
+                    Taxi.buscarTaxi(vehiculos,idTaxi);
                     break;
                 case 8:
                     for (Vehiculo v : vehiculos) {
@@ -88,13 +93,12 @@ public class PE5E2 {
                         } else if (v instanceof Autobus) {
                             ((Autobus) v).mostrarAtributos();
                         } else if (v instanceof Vtc) {
-                            ((Vtc)v).mostrarAtributos();
-                        }else{
+                            ((Vtc) v).mostrarAtributos();
+                        } else {
                             v.mostrarAtributos();
                         }
                     }
                     break;
-
                 case 9:
                     salir = true;
                     break;

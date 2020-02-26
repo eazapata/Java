@@ -16,8 +16,8 @@ public class Autobus extends Vehiculo {
 
     public Autobus(Autobus bus) {
         super((Vehiculo)bus);
-        this.plazas = plazas;
-        this.paradas = paradas;
+        this.plazas = bus.plazas;
+        this.paradas = bus.paradas;
     }
 
     public Autobus() {
@@ -53,7 +53,12 @@ public class Autobus extends Vehiculo {
         System.out.println("Plazas: ");
         setPlazas(Integer.parseInt(lector.nextLine()));
         System.out.println("Paradas: ");
-        setParadas(Integer.parseInt(lector.nextLine()));
+        int paradas=Integer.parseInt(lector.nextLine());
+        while((paradas<3)||(paradas>20)){
+            System.out.println("Las paradas mínimas serán 3 y no pueden superar las 20");
+            paradas=Integer.parseInt(lector.nextLine());
+        }
+        setParadas(paradas);
     }
     
 }

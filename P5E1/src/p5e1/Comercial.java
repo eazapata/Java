@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package p5e1;
 
 import java.util.Scanner;
@@ -21,6 +17,12 @@ public final class Comercial extends Empleado{
         super(nombre, apellido1, apellido2, nif, edad, salario);
         this.ventasRealizadas = ventasRealizadas;
         this.comision = comision;
+        
+    }
+    public Comercial(Comercial c1) {
+        super((Empleado)c1);
+        this.ventasRealizadas = c1.ventasRealizadas;
+        this.comision = c1.comision;
         
     }
 
