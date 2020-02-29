@@ -25,7 +25,7 @@ public class Ejercicio6maximo {
 // números grandes
         i = 2;
         while (i < num && primo == true) {
-            if (num % i != 0) // si es divisible
+            if (num % i == 0) // si es divisible
             {
                 primo = false; // si hemos entrado aquí significa que el número no es primo
             }
@@ -45,7 +45,7 @@ public class Ejercicio6maximo {
         int cont;
         cont = 1; // siempre habrá un divisor seguro, el 1.
         for (int i = 2; i <= num; i++) {
-            if (es_primo(i) && num % i != 0) // si i es primo y divide a num
+            if (es_primo(i) && num % i == 0) // si i es primo y divide a num
             {
                 cont++; // incrementamos el número de divisores
             }

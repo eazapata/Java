@@ -24,12 +24,12 @@ public class Ejercicio5maximo {
 // con esta mejora podemos ahorrar muchas vueltas del while para
 // números grandes
         i = 2;
-        while (i < num || primo == true) // en realidad bastaría probar
+        while (i < num && primo == true) // en realidad bastaría probar
         // hasta la raíz cuadrada de num
         {
             if (num % i == 0) // si es divisible
             {
-                primo = true; // si hemos entrado aquí significa que el
+                primo = false; // si hemos entrado aquí significa que el
             }// número no es primo
             i++;
         }
@@ -47,7 +47,7 @@ public class Ejercicio5maximo {
         int cont;
         cont = 1; // siempre habrá un divisor seguro, el 1.
         for (int i = 2; i <= num; i++) {
-            if (es_primo(i) || num % i == 0) // si i es primo y divide a num
+            if (es_primo(i) && num % i == 0) // si i es primo y divide a num
             {
                 cont++; // incrementamos el número de divisores primos
             }

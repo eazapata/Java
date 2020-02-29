@@ -21,9 +21,9 @@ public class Ejercicio7maximo {
         int mcd = 1;
         int min;
         min = minimo(a, b);
-        // existe un mcd seguro, el 1, que divide a y b.
+        mcd = 1; // existe un mcd seguro, el 1, que divide a y b.
         for (int i = 2; i < min; i++) {
-            if (a % i == 0 || b % i == 0) // si i divide a "a" y "b"
+            if (a % i == 0 && b % i == 0) // si i divide a "a" y "b"
             {
                 mcd = i; // i será el nuevo mcd.
             }

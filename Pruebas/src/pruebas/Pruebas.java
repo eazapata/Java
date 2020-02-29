@@ -9,7 +9,7 @@ public class Pruebas {
         double gradosC, gradosF;
         System.out.println("Introduce grados Centígrados:");
         gradosC = sc.nextDouble();
-        gradosF = (32 + 9) * gradosC / 5;
+        gradosF = 32 + (9 * gradosC / 5);
         System.out.println(gradosC + " oC = " + gradosF + " oF");
     }
 }

@@ -5,7 +5,6 @@
  */
 package pruebasentornos2;
 
-
 /**
  *
  * @author eduwo
@@ -14,8 +13,8 @@ public class Ejercicio9maximo {
 
     static int suma_n_impares(int n) {
         int suma = 0;
-        for (int i = 1; i < n; i++) {
-            suma += 2 * i - 2; // así calculamos el i-ésimo impar
+        for (int i = 1; i <= n; i++) {
+            suma += 2 * i - 1; // así calculamos el i-ésimo impar
         }
         return (suma);
     }
