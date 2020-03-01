@@ -27,7 +27,7 @@ public class Ejercicio3maximo {
         int max;
         int t[];
         t = new int[6];
-        for (int i = 2; i < t.length - 2; i++) {
+        for (int i = 0; i < t.length; i++) {
             t[i] = (int) (Math.random() * 100 + 1);
         }
         System.out.println("Los valores son:");
