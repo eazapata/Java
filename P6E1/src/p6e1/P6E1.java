@@ -120,7 +120,8 @@ public class P6E1 {
         } catch (NumberFormatException area) {
             System.out.println("Has introducido un valor alfabético en lugar de uno númerico.");
         } catch (SinContenido vacio) {
-            System.out.println(vacio);
+            vacio.mostrarMensaje();
+            vacio.printStackTrace();
 
         }
     }

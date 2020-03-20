@@ -8,20 +8,19 @@ package p6e2;
 import java.util.*;
 
 public class P6E2 {
-    
-    public static void realizarSimulacion(ArrayList<Apuesta> apuestas,int primitivas, int quinielas){
+
+    public static void realizarSimulacion(ArrayList<Apuesta> apuestas, int primitivas, int quinielas) {
         int dosAciertos;
         int cuatroAciertos;
         int seisAciertos;
-        
-        for(int i = 0; i <primitivas; i++){
-            if (apuestas.get(i) instanceof Primitiva){
-                ((Primitiva)apuestas.get(i)).simularPrimitiva();
-                
+
+        for (int i = 0; i < primitivas; i++) {
+            if (apuestas.get(i) instanceof Primitiva) {
+                ((Primitiva) apuestas.get(i)).simularPrimitiva();
+
             }
         }
-        
-        
+
     }
 
     public static void main(String[] args) {
@@ -35,12 +34,16 @@ public class P6E2 {
             System.out.println("\t2) Crear apuesta Quiniela.");
             System.out.println("\t3) Realizar simulación.");
             System.out.println("\t4) Salir");
-            
+
             int opcion = Integer.parseInt(sc.nextLine());
-            switch(opcion){
+            switch (opcion) {
                 case 1:
                     Primitiva p1 = new Primitiva();
-                    p1.crearApuestaPrimitiva();
+                    try {
+                        p1.crearApuestaPrimitiva();
+                    } catch (NoMayus ex) {
+                        System.out.println("Tanto el nombre como los apellidos deben estar en máyusculas.");
+                    }
                     apuestas.add(p1);
                     p1.mostrarApuesta();
                     break;
@@ -49,18 +52,18 @@ public class P6E2 {
                     q1.crearApuestaQuiniela();
                     apuestas.add(q1);
                     break;
-                    
+
                 case 3:
                     System.out.println("Indica las simulaciones de la primitiva:");
                     int simulacionesPrimitiva = Integer.parseInt(sc.nextLine());
                     System.out.println("Indica las simulaciones de la quiniela");
                     int simulacionesQuiniela = Integer.parseInt(sc.nextLine());
-                    realizarSimulacion(apuestas,simulacionesPrimitiva,simulacionesQuiniela);
+                    realizarSimulacion(apuestas, simulacionesPrimitiva, simulacionesQuiniela);
                     break;
-                    
+
                 case 4:
                     salir = true;
-                
+
                 default:
                     System.out.println("Opción no válida.");
             }

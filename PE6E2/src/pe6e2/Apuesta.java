@@ -1,31 +1,29 @@
-package p6e2;
+package pe6e2;
 
 import java.util.*;
 
 public abstract class Apuesta {
 
-    private String nombre;
-    private String apellido1;
-    private String apellido2;
+    private String nombre, apellido1, apellido2;
     private int numApuesta;
-    private static int ultimoNum = 1;
+    private static int ultimoNumApuesta = 1;
+
+    public Apuesta() {
+        this.setNumApuesta(ultimoNumApuesta++);
+    }
 
     public Apuesta(String nombre, String apellido1, String apellido2, int numApuesta) {
         this.setNombre(nombre);
         this.setApellido1(apellido1);
         this.setApellido2(apellido2);
-        this.setNumApuesta(ultimoNum++);
-    }
-
-    public Apuesta() {
-        this.setNumApuesta(ultimoNum++);
+        this.setNumApuesta(ultimoNumApuesta++);
     }
 
     public Apuesta(Apuesta a1) {
         this.setNombre(a1.nombre);
         this.setApellido1(a1.apellido1);
         this.setApellido2(a1.apellido2);
-        this.setNumApuesta(a1.numApuesta);
+        this.setNumApuesta(a1.ultimoNumApuesta++);
     }
 
     public String getNombre() {
@@ -60,38 +58,40 @@ public abstract class Apuesta {
         this.numApuesta = numApuesta;
     }
 
-    public static int getUltimoNum() {
-        return ultimoNum;
+    public int getUltimoNumApuesta() {
+        return ultimoNumApuesta;
     }
 
-    public static void setUltimoNum(int ultimoNum) {
-        Apuesta.ultimoNum = ultimoNum;
+    public void setUltimoNumApuesta(int ultimoNumApuesta) {
+        this.ultimoNumApuesta = ultimoNumApuesta;
     }
 
     public void mostrarApuesta() {
-        System.out.println("Número apuesta: " + this.getNumApuesta());
+        System.out.println("Apuesta número:" + this.getNumApuesta());
         System.out.println("Nombre: " + this.getNombre());
         System.out.println("Primer apellido: " + this.getApellido1());
         System.out.println("Segundo apellido: " + this.getApellido2());
-
     }
 
-    public void crearApuesta() throws NoMayus {
-
+    public void crearApuesta() throws Mayus{
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Nombre: ");
-        this.setNombre(sc.nextLine());
-        System.out.println("Primer apellido:");
-        this.setApellido1(sc.nextLine());
-        System.out.println("Segundo apellido: ");
-        this.setApellido2(sc.nextLine());
+        System.out.println("Introduce tu nombre: ");
+        String nombre = sc.nextLine();
+        System.out.println("Introduce tu primer apellido:");
+        String apellidoPri = sc.nextLine();
+        System.out.println("Introduce tu segundo apellido: ");
+        String apellidoSeg = sc.nextLine();
 
-        if (this.getNombre().equals(" ")){
-           throw new NoMayus(); 
+        if ((!nombre.equals(nombre.toUpperCase())) || (!apellidoPri.equals(apellidoPri.toUpperCase())) || (!apellidoSeg.equals(apellidoSeg.toUpperCase()))) {
+            throw new Mayus();
+
+        }else{
+            this.setNombre(nombre);
+            this.setApellido1(apellidoPri);
+            this.setApellido2(apellidoSeg);
         }
 
     }
+
 }
-
-
