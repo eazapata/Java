@@ -1,21 +1,34 @@
 package pe6e2;
 
+public class Mayus extends Exception {
 
-public class Mayus extends Exception{
-    String mensaje;
+    String error;
 
-    public Mayus() {
-    super();
+    public Mayus(String error) {
+        this.error = error;
     }
 
-    public Mayus(String mensaje, String string, Throwable thrwbl, boolean bln, boolean bln1) {
-        super(string, thrwbl, bln, bln1);
-        this.mensaje = mensaje;
+    public String getError() {
+        return error;
     }
-    
-    public void mostarMensaje(){
-        System.out.println("La información introducida no está en mayúsculas.");
+
+    public void setError(String error) {
+        this.error = error;
     }
-    
-    
+
+    public void mostarMensaje() {
+        switch (this.getError()) {
+            case "1":
+                System.out.println("El nombre debe estar en mayúsculas.");
+                break;
+            case "2":
+                System.out.println("El primer apellido debe estar en mayúsculas.");
+                break;
+            case "3":
+                System.out.println("El segundo apellido debe estar en mayúsculas.");
+                break;
+            default:
+                System.out.println("La informacióm aportada debe estar en maýusculas");
+        }
+    }
 }

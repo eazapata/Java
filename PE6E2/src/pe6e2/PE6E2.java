@@ -8,8 +8,9 @@ public class PE6E2 {
         int i = 0;
         int j = 0;
         int aciertos2 = 0;
+        int aciertos3 = 0;
         int aciertos4 = 0;
-        int aciertos6 = 0;
+        int aciertos5 = 0;
         int posicionPrimitiva = 0;
         boolean primitivaGanadora = false;
 
@@ -19,40 +20,43 @@ public class PE6E2 {
                 if (((Primitiva) apuestas.get(i)).getListaNum()[j] == (primitivas[posicionPrimitiva][j])) {
                     ((Primitiva) apuestas.get(i)).setAciertos(((Primitiva) apuestas.get(i)).getAciertos() + 1);
                 }
-                //System.out.print(primitivas[posicionPrimitiva][j] + " ");
 
                 if ((j == 5) && (!primitivaGanadora)) {
                     posicionPrimitiva += 1;
-                    //System.out.println("");
                     ((Primitiva) apuestas.get(i)).setAciertos(0);
                     j = 0;
+                }else{
+                    j++;
                 }
-                j++;
                 if (((Primitiva) apuestas.get(i)).getAciertos() == 6) {
+                    System.out.println("Enhorabuena la ha ganado la primitiva.");
+                    ((Primitiva) apuestas.get(i)).mostrarApuesta();
                     primitivaGanadora = true;
                 } else if (((Primitiva) apuestas.get(i)).getAciertos() == 2) {
                     aciertos2 += 1;
+                } else if (((Primitiva) apuestas.get(i)).getAciertos() == 3) {
+                    aciertos3 += 1;
                 } else if (((Primitiva) apuestas.get(i)).getAciertos() == 4) {
                     aciertos4 += 1;
-                    if (((Primitiva) apuestas.get(i)).getAciertos() == 6) {
-                        System.out.println("Enhorabuena la ha ganado la primitiva.");
-                        ((Primitiva) apuestas.get(i)).mostrarApuesta();
-                    }
+                } else if (((Primitiva) apuestas.get(i)).getAciertos() == 5) {
+                    aciertos5 += 1;
                 }
+                if(posicionPrimitiva==(primitivas.length-1))i++;
 
-            }else{
+            } else {
                 i++;
             }
-            
 
         }
         if (!primitivaGanadora) {
             System.out.println("No hay premios.");
-            System.out.println("Dobles aciertos: "+aciertos2);
-            System.out.println("Cuadruple aciertos: "+aciertos4);
+            System.out.println("Dobles aciertos: " + aciertos2);
+            System.out.println("Triples aciertos: " + aciertos3);
+            System.out.println("Cuadruple aciertos: " + aciertos4);
+            System.out.println("Quintuples aciertos: " + aciertos5);
         }
-
     }
+    
 
     public static void realizarSimulacion(ArrayList<Apuesta> apuestas) {
         Scanner sc = new Scanner(System.in);
@@ -86,7 +90,8 @@ public class PE6E2 {
             }
             quinielasSimuladas[i] = quinielaSimulada;
         }
-        comprobarResultadosPrimitiva(apuestas, primitivasSimuladas, simulacionesPrimitiva);
+        if(simulacionesPrimitiva>0)comprobarResultadosPrimitiva(apuestas, primitivasSimuladas, simulacionesPrimitiva);
+        //comprobarResultadosQuiniela(apuestas,quinielasSimuladas,simulacionesQuiniela);
 
     }
 

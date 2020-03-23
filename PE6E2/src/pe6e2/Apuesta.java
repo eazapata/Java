@@ -73,25 +73,30 @@ public abstract class Apuesta {
         System.out.println("Segundo apellido: " + this.getApellido2());
     }
 
-    public void crearApuesta() throws Mayus{
+    public void crearApuesta() throws Mayus {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Introduce tu nombre: ");
-        String nombre = sc.nextLine();
-        System.out.println("Introduce tu primer apellido:");
-        String apellidoPri = sc.nextLine();
-        System.out.println("Introduce tu segundo apellido: ");
-        String apellidoSeg = sc.nextLine();
-
-        if ((!nombre.equals(nombre.toUpperCase())) || (!apellidoPri.equals(apellidoPri.toUpperCase())) || (!apellidoSeg.equals(apellidoSeg.toUpperCase()))) {
-            throw new Mayus();
-
-        }else{
-            this.setNombre(nombre);
-            this.setApellido1(apellidoPri);
-            this.setApellido2(apellidoSeg);
+        String nombreUsuario = sc.nextLine();
+        if (!nombreUsuario.equals(nombreUsuario.toUpperCase())) {
+            throw new Mayus("1");
         }
 
+        System.out.println("Introduce tu primer apellido:");
+        String apellidoPri = sc.nextLine();
+        if (!apellidoPri.equals(apellidoPri.toUpperCase())) {
+            throw new Mayus("2");
+        }
+        System.out.println("Introduce tu segundo apellido: ");
+        String apellidoSeg = sc.nextLine();
+        if (!apellidoSeg.equals(apellidoSeg.toUpperCase())) {
+            throw new Mayus("3");
+        }
+        
+        this.setNombre(nombreUsuario);
+        this.setApellido1(apellidoPri);
+        this.setApellido2(apellidoSeg);
     }
-
 }
+
+
