@@ -23,40 +23,92 @@ public class PE6E2 {
 
                 if ((j == 5) && (!primitivaGanadora)) {
                     posicionPrimitiva += 1;
+
+                    switch (((Primitiva) apuestas.get(i)).getAciertos()) {
+                        case 2:
+                            aciertos2 += 1;
+                            break;
+                        case 3:
+                            aciertos3 += 1;
+                            break;
+                        case 4:
+                            aciertos4 += 1;
+                            break;
+                        case 5:
+                            aciertos5 += 1;
+                            break;
+                        case 6:
+                            System.out.println("Ha ganado la primitiva.");
+                            ((Primitiva) apuestas.get(i)).mostrarApuesta();
+                            System.out.println("2 aciertos: " + aciertos2);
+                            System.out.println("3 aciertos: " + aciertos3);
+                            System.out.println("4 aciertos: " + aciertos4);
+                            System.out.println("5 aciertos: " + aciertos5);
+                            break;
+                        default:
+                            break;
+                    }
                     ((Primitiva) apuestas.get(i)).setAciertos(0);
                     j = 0;
-                }else{
+                } else {
                     j++;
                 }
-                if (((Primitiva) apuestas.get(i)).getAciertos() == 6) {
-                    System.out.println("Enhorabuena la ha ganado la primitiva.");
-                    ((Primitiva) apuestas.get(i)).mostrarApuesta();
-                    primitivaGanadora = true;
-                } else if (((Primitiva) apuestas.get(i)).getAciertos() == 2) {
-                    aciertos2 += 1;
-                } else if (((Primitiva) apuestas.get(i)).getAciertos() == 3) {
-                    aciertos3 += 1;
-                } else if (((Primitiva) apuestas.get(i)).getAciertos() == 4) {
-                    aciertos4 += 1;
-                } else if (((Primitiva) apuestas.get(i)).getAciertos() == 5) {
-                    aciertos5 += 1;
+
+                if (posicionPrimitiva == (primitivas.length - 1)) {
+                    i++;
                 }
-                if(posicionPrimitiva==(primitivas.length-1))i++;
 
             } else {
                 i++;
             }
 
         }
-        if (!primitivaGanadora) {
-            System.out.println("No hay premios.");
-            System.out.println("Dobles aciertos: " + aciertos2);
-            System.out.println("Triples aciertos: " + aciertos3);
-            System.out.println("Cuadruple aciertos: " + aciertos4);
-            System.out.println("Quintuples aciertos: " + aciertos5);
+        if ((!primitivaGanadora)&&(primitivas.length>0)) {
+            System.out.println("No ha ganado.");
+            System.out.println("2 aciertos: " + aciertos2);
+            System.out.println("3 aciertos: " + aciertos3);
+            System.out.println("4 aciertos: " + aciertos4);
+            System.out.println("5 aciertos: " + aciertos5);
         }
     }
-    
+
+    public static void comprobarResultadosQuiniela(ArrayList<Apuesta> apuestas, String[][] quinielas, int simulacionesQuiniela) {
+
+        boolean quinielaGanadora = false;
+        int posicionQuiniela = 0;
+        int i = 0;
+        int j = 0;
+
+        while ((!quinielaGanadora) && (i < apuestas.size())) {
+            if ((apuestas.get(i) instanceof Quiniela) && (posicionQuiniela < quinielas.length)) {
+                if (((Quiniela) apuestas.get(i)).getPartidos()[j].equals(quinielas[posicionQuiniela][j])) {
+                    ((Quiniela) apuestas.get(i)).setAciertos(((Quiniela) apuestas.get(i)).getAciertos() + 1);
+                }
+                if ((j == (quinielas[i].length - 1)) && (!quinielaGanadora)) {
+                    posicionQuiniela += 1;
+                    ((Quiniela) apuestas.get(i)).setAciertos(0);
+                    j = 0;
+                } else {
+                    j++;
+                }
+                if (((Quiniela) apuestas.get(i)).getAciertos() == 15) {
+                    System.out.println("Ha ganado la primitiva.");
+                    ((Quiniela) apuestas.get(i)).mostrarApuesta();
+                    quinielaGanadora = true;
+                }
+                if (posicionQuiniela == (quinielas.length - 1)) {
+                    i++;
+                }
+            } else {
+                i++;
+            }
+
+        }
+        if (!quinielaGanadora) {
+            System.out.println("No hay quinielas premiadas.");
+        }
+
+    }
 
     public static void realizarSimulacion(ArrayList<Apuesta> apuestas) {
         Scanner sc = new Scanner(System.in);
@@ -86,12 +138,16 @@ public class PE6E2 {
             for (int j = 0; j < quinielaSimulada.length; j++) {
                 int posicionArray = new Random().nextInt(opciones.length);
                 quinielaSimulada[j] = opciones[posicionArray];
-                System.out.println(quinielaSimulada[j]);
             }
             quinielasSimuladas[i] = quinielaSimulada;
         }
-        if(simulacionesPrimitiva>0)comprobarResultadosPrimitiva(apuestas, primitivasSimuladas, simulacionesPrimitiva);
-        //comprobarResultadosQuiniela(apuestas,quinielasSimuladas,simulacionesQuiniela);
+        if (simulacionesPrimitiva > 0) {
+            comprobarResultadosPrimitiva(apuestas, primitivasSimuladas, simulacionesPrimitiva);
+        }
+
+        if (simulacionesQuiniela > 0) {
+            comprobarResultadosQuiniela(apuestas, quinielasSimuladas, simulacionesQuiniela);
+        }
 
     }
 

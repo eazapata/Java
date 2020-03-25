@@ -39,12 +39,12 @@ public class Quiniela extends Apuesta {
 
     public void crearApuestaQuiniela() throws Mayus {
         Scanner sc = new Scanner(System.in);
-
+        super.crearApuesta();
         //Este signo es el que introducirá el usuario
         for (int i = 0; i < this.getPartidos().length; i++) {
             System.out.println("Partido "+(i+1));
             String signo = sc.nextLine();
-            while ((!signo.equals("1")) && (!signo.equals("2")) && (!signo.equals("x"))) {
+            while ((!signo.equals("1")) && (!signo.equals("2")) && (!signo.equalsIgnoreCase("x"))) {
                 System.out.println("Los valores deben ser 1, 2 o X");
                 signo = sc.nextLine();
             }

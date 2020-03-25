@@ -1,8 +1,8 @@
-package ejerciciosweb19;
+package p2;
 
 import java.util.*;
 
-public class EjerciciosWeb19 {
+public class p2 {
 
     public static void mostrarArray() {
         int array1[][] = new int[5][5];
@@ -46,8 +46,6 @@ public class EjerciciosWeb19 {
         } else {
             System.out.println("La matriz no es simetrica");
         }
-
-        sc.close();
     }
 
     public static void sumarArray() {
@@ -67,7 +65,6 @@ public class EjerciciosWeb19 {
                 matriz2[i][j] = num;
             }
         }
-        sc.close();
         for (int i = 0; i < matriz.length; i++) {
             System.out.println();
             for (int j = 0; j < matriz[i].length; j++) {
@@ -171,7 +168,6 @@ public class EjerciciosWeb19 {
             }
 
         }
-        sc.close();
     }
 
 }
